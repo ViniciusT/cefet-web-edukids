@@ -1,7 +1,16 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {}
+ #controles ul:hover{
+     -webkit-transition-timing-function: ease-in;
+     -moz-transition-timing-function: ease-in;
+     -o-transition-timing-function: ease-in;
+     transition-timing-function: ease-in;
+     -webkit-transition-duration: 2000ms;
+     -moz-transition-duration: 2000ms;
+     -o-transition-duration: 2000ms;
+     transition-duration: 2000ms;
+ }
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -12,16 +21,43 @@
  *   - instinto-selvagem: animal dá um salto e cresce, com uma borda vermelha
  */
 .agitado {}
-.agitado img {}
+.agitado img {
+   animation: piscando 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes piscando {
+    from { opacity: 1.0; }
+    to   { opacity: 0.7; }
+}
 
 .alimentado {}
-.alimentado img {}
+.alimentado img {
+    animation: girando 1s ease-in-out 0s infinite alternate;
+}
+@keyframes girando {
+    from { transform: rotate(180deg);  }
+    to   { transform: rotate(-180deg); border-color: green}
+}
 
 .perturbado {}
-.perturbado img {}
+.perturbado img {
+    position: relative;
+    animation: pulsando .5s ease-in-out 0s infinite alternate;
 
+}
+@keyframes pulsando {
+    from { top: 0;   }
+    to   { top: -10px; }
+}
 .instinto-selvagem {}
-.instinto-selvagem img {}
+.instinto-selvagem img {
+    position: relative;
+    animation: cresce .5s ease-in-out 0s infinite alternate
+}
+@keyframes cresce {
+    from { top: 0;width: 20px; }
+    to   { top: -10px; width: 100px;}
+}
 
 /*
  * Exercício 3: Criar uma imagem sprite com as imagens dos botões de controle
